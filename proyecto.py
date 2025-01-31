@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 
 datos = pd.read_csv("living.csv")
 
-datos = datos.rename(columns={"Cost of living, 2017": "Costo_Vida"})
+datos = datos.rename(columns={"Cost of living, 2017": "Costo_Vida", "Global rank": "Ranking"})
 
 print(f"Número de filas: {datos.shape[0]}")
 print(f"Número de columnas: {datos.shape[1]}")
@@ -26,7 +26,10 @@ print(f"País con el costo de vida más bajo: {pais_mas_barato}")
 
 peru = datos[datos["Countries"] == "Peru"]
 if not peru.empty:
-    print(f"Costo de vida en Perú: {peru['Costo_Vida'].values[0]}")
+    costo_peru = peru["Costo_Vida"].values[0]
+    ranking_peru = peru["Ranking"].values[0]
+    print(f"Costo de vida en Perú: {costo_peru}")
+    print(f"Ranking de Perú: {ranking_peru}")
 else:
     print("No hay datos de Perú en el dataset.")
 
@@ -76,6 +79,7 @@ for i, bar in enumerate(bars):
              ha='center', va='bottom', color="black", rotation=45)
 
 plt.show()
+
 
 
 
